@@ -3,7 +3,7 @@
 An intelligent, interactive chatbot designed to answer healthcare-related questions using retrieved context from medical documents. Built with Flask, LangChain, Pinecone, OpenAI, and Bootstrap, this project simulates a medical assistant that responds only based on indexed knowledge, ensuring reliable, context-specific answers.
 
 
-
+![image alt](https://github.com/Srinjana12/MedicalChatBot_GenAI/blob/1bcf880e39baaaa6c287cce43117dda3028cc34f/Screenshot%202025-05-11%20004421.jpg)
 
 
 
