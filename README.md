@@ -30,26 +30,27 @@ An intelligent, interactive chatbot designed to answer healthcare-related questi
  UI	                Bootstrap 5, Font Awesome, HTML/CSS
 
 
+# Project Structure
+```
 
-# MedicalChatBot_GenAI/
+MedicalChatBot_GenAI/
 │
-├── app.py                    # Main Flask app
-├── store_index.py           # Script to index documents into Pinecone
-├── .env                     # API keys (excluded in .gitignore)
+├── app.py # Main Flask app
+├── store_index.py # Script to index documents into Pinecone
+├── .env # API keys (excluded in .gitignore)
 │
 ├── src/
-│   ├── helper.py            # PDF loader, text splitter, embedding
-│   └── prompt.py            # Custom system prompt for the chatbot
+│ ├── helper.py # PDF loader, text splitter, embedding
+│ └── prompt.py # Custom system prompt for the chatbot
 │
 ├── templates/
-│   └── chat.html            # Bootstrap chat interface
+│ └── chat.html # Bootstrap chat interface
 │
 ├── static/
-│   └── style.css            # Chat bubble and layout styles
+│ └── style.css # Chat bubble and layout styles
 │
-└── Data/                    # PDF documents to be indexed
-
-
+└── Data/ # PDF documents to be indexed
+```
 
 # How to Run
 
