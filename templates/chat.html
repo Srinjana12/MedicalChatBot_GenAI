@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Medical Chatbot</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="bg-light">
+
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-10 col-lg-8">
+                <div class="card shadow rounded-4">
+                    <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">🩺 Medical AI Chatbot</h5>
+                        <span class="badge bg-light text-dark">Powered by GPT</span>
+                    </div>
+
+                    <div class="card-body" id="chat-box">
+                        <!-- Chat messages will appear here -->
+                    </div>
+
+                    <div class="card-footer bg-white border-top d-flex">
+                        <input type="text" id="message-input" class="form-control me-2"
+                            placeholder="Type your message..." autocomplete="off">
+                        <button class="btn btn-primary" id="send-btn">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const input = document.getElementById("message-input");
+            const button = document.getElementById("send-btn");
+            const chatBox = document.getElementById("chat-box");
+
+            function appendMessage(sender, text, isUser) {
+                const msg = document.createElement("div");
+                msg.className = `d-flex mb-3 ${isUser ? 'justify-content-end' : 'justify-content-start'}`;
+                msg.innerHTML = `
+          <div class="${isUser ? 'user-bubble' : 'bot-bubble'}">
+            <strong>${sender}</strong><br>${text}
+          </div>`;
+                chatBox.appendChild(msg);
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }
+
+            button.addEventListener("click", () => {
+                const msg = input.value.trim();
+                if (!msg) return;
+                appendMessage("You", msg, true);
+                input.value = "";
+
+                fetch("/get", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                    body: "msg=" + encodeURIComponent(msg)
+                })
+                    .then(res => res.text())
+                    .then(data => {
+                        appendMessage("Bot", data, false);
+                    });
+            });
+
+            input.addEventListener("keydown", (e) => {
+                if (e.key === "Enter") button.click();
+            });
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+.user-bubble {
+    background-color: #0d6efd;
+    color: white;
+    border-radius: 12px;
+    padding: 10px 15px;
+    max-width: 75%;
+}
+
+.bot-bubble {
+    background-color: #f1f1f1;
+    color: #333;
+    border-radius: 12px;
+    padding: 10px 15px;
+    max-width: 75%;
+}
+
+#chat-box {
+    height: 400px;
+    overflow-y: auto;
+    background-color: #fafafa;
+    padding: 15px;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+#message-input:focus {
+    box-shadow: none;
+    border-color: #0d6efd;
+}
